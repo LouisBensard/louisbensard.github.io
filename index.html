@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Louis Bensard — CTO, ML engineer</title>
+<meta name="description" content="Louis Bensard builds AI systems that have to work in the real world. Co-founder & CTO at Sightline. A decade of applied machine learning before that.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=IBM+Plex+Sans:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  /* ---------- tokens ---------- */
+  :root {
+    --paper: #F5F6F3;
+    --ink: #171A21;
+    --muted: #616875;
+    --rule: #D6D9D3;
+    --accent: #B4711C;
+    --band: rgba(180,113,28,.14);
+    --placeholder: #E9EBE6;
+    --serif: "Newsreader", "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+    --sans: "IBM Plex Sans", "Helvetica Neue", Arial, sans-serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper: #13161C;
+      --ink: #E9EAE5;
+      --muted: #9AA1AC;
+      --rule: #2B3039;
+      --accent: #E2A34A;
+      --band: rgba(226,163,74,.16);
+      --placeholder: #1C2028;
+    }
+  }
+  :root[data-theme="dark"] {
+    --paper: #13161C;
+    --ink: #E9EAE5;
+    --muted: #9AA1AC;
+    --rule: #2B3039;
+    --accent: #E2A34A;
+    --band: rgba(226,163,74,.16);
+    --placeholder: #1C2028;
+  }
+
+  /* ---------- base ---------- */
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 17px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: .18em; text-decoration-color: var(--rule); }
+  a:hover { text-decoration-color: var(--accent); }
+  a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+  img { max-width: 100%; height: auto; display: block; }
+  p { margin: 0 0 1.1em; }
+  h1, h2, h3 { font-family: var(--serif); font-weight: 400; margin: 0; line-height: 1.12; letter-spacing: -.01em; }
+  h1 { font-size: clamp(2.4rem, 6vw, 4.4rem); }
+  h2 { font-size: clamp(1.6rem, 3vw, 2.2rem); margin-bottom: 1.2rem; }
+  h3 { font-size: 1.35rem; }
+
+  .wrap { width: min(1080px, 100% - 3rem); margin-inline: auto; }
+  .measure { max-width: 640px; }
+  section { padding: clamp(3.5rem, 8vw, 6.5rem) 0; border-top: 1px solid var(--rule); }
+  section:first-of-type { border-top: 0; }
+  .small { font-size: .92rem; color: var(--muted); }
+
+  /* ---------- nav ---------- */
+  nav { padding: 1.4rem 0; }
+  nav .wrap { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
+  nav .name { font-family: var(--serif); font-size: 1.25rem; text-decoration: none; }
+  nav ul { list-style: none; margin: 0; padding: 0; display: flex; gap: 1.4rem; font-size: .95rem; }
+  nav ul a { text-decoration: none; color: var(--muted); }
+  nav ul a:hover { color: var(--ink); }
+
+  /* ---------- hero ---------- */
+  .hero { padding-top: clamp(2rem, 6vw, 4.5rem); }
+  .hero .wrap { display: grid; grid-template-columns: 1.4fr 1fr; gap: clamp(2rem, 5vw, 5rem); align-items: end; }
+  .hero h1 { margin-bottom: 1.4rem; }
+  .hero .lede { font-size: 1.15rem; max-width: 34em; }
+  .hero .lede b { font-weight: 500; }
+  .forecast { width: 100%; height: auto; margin-top: 2.2rem; color: var(--ink); }
+  .forecast .hist { fill: none; stroke: currentColor; stroke-width: 1.5; }
+  .forecast .fc { fill: none; stroke: var(--accent); stroke-width: 1.8; stroke-dasharray: 4 3; stroke-linecap: round; stroke-linejoin: round; }
+  .forecast .band { fill: var(--band); }
+  .forecast .now { stroke: var(--rule); stroke-width: 1; }
+  .forecast text { font-family: var(--sans); font-size: 11px; fill: var(--muted); }
+  .forecast .actual { fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linejoin: round; }
+  .forecast .tick { stroke: var(--rule); stroke-width: 1; }
+  .forecast .tok { fill: none; stroke: currentColor; stroke-width: 1; }
+  .forecast .node { fill: var(--paper); stroke: currentColor; stroke-width: 1.2; }
+  .forecast .arrow { fill: none; stroke: var(--muted); stroke-width: 1; stroke-linecap: round; stroke-linejoin: round; }
+  @media (max-width: 760px) { .hero .wrap { grid-template-columns: 1fr; } }
+
+  /* ---------- photos ---------- */
+  img.portrait { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; border-radius: 2px; }
+  .about .photos img { width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 2px; }
+
+  /* ---------- now ---------- */
+  .now p:last-of-type { margin-bottom: 0; }
+
+  /* ---------- built (a list, ruled because it is a list) ---------- */
+  .built ol { list-style: none; margin: 0; padding: 0; }
+  .built li { display: grid; grid-template-columns: 220px 1fr; gap: 1.5rem 3rem; padding: 1.8rem 0; border-top: 1px solid var(--rule); }
+  .built li:first-child { border-top: 0; padding-top: 0; }
+  .built .meta { color: var(--muted); font-size: .92rem; line-height: 1.5; }
+  .built .meta h3 { color: var(--ink); margin-bottom: .25rem; }
+  .built .body p:last-child { margin-bottom: 0; }
+  .built .body .result { color: var(--muted); font-size: .95rem; }
+  .built .prev { font-family: var(--sans); font-size: .92rem; color: var(--muted); margin: 2.4rem 0 .4rem; }
+  .built .previously li:first-child { border-top: 1px solid var(--rule); padding-top: 1.8rem; }
+  @media (max-width: 760px) { .built li { grid-template-columns: 1fr; gap: .6rem; } }
+
+  /* ---------- thinking ---------- */
+  .think .wrap { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(2rem, 6vw, 6rem); }
+  @media (max-width: 760px) { .think .wrap { grid-template-columns: 1fr; } }
+  .beliefs { list-style: none; margin: 0; padding: 0; font-family: var(--serif); font-size: 1.3rem; line-height: 1.35; }
+  .beliefs li { padding: 1rem 0; border-top: 1px solid var(--rule); }
+  .beliefs li:first-child { border-top: 0; padding-top: 0; }
+  .writing { list-style: none; margin: 0; padding: 0; }
+  .writing li { padding: 1rem 0; border-top: 1px solid var(--rule); }
+  .writing li:first-child { border-top: 0; padding-top: 0; }
+  .writing a { font-family: var(--serif); font-size: 1.3rem; text-decoration: none; line-height: 1.3; display: block; }
+  .writing a:hover { color: var(--accent); }
+  .writing p { margin: .3rem 0 0; color: var(--muted); font-size: .95rem; }
+  .writing .soon { color: var(--muted); font-size: .8rem; margin-left: .5em; font-family: var(--sans); }
+
+  /* ---------- about ---------- */
+  .about .wrap { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(2rem, 5vw, 5rem); align-items: start; }
+  @media (max-width: 760px) { .about .wrap { grid-template-columns: 1fr; } }
+  .about .route { font-family: var(--serif); font-style: italic; font-size: 1.2rem; color: var(--muted); margin-bottom: 1.2rem; }
+  .about .photos { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .about .photos figcaption { font-size: .82rem; color: var(--muted); margin-top: .4rem; }
+  .about figure { margin: 0; }
+
+  /* ---------- contact ---------- */
+  .contact h2 { margin-bottom: .6rem; }
+  .contact ul { list-style: none; padding: 0; margin: 1.5rem 0 0; display: flex; flex-wrap: wrap; gap: .6rem 2rem; }
+  .contact li a { text-decoration: none; border-bottom: 1px solid var(--rule); padding-bottom: .15rem; }
+  .contact li a:hover { border-color: var(--accent); }
+
+  footer { border-top: 1px solid var(--rule); padding: 1.6rem 0 2.4rem; }
+  footer .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; gap: .5rem; }
+</style>
+</head>
+<body>
+
+<nav aria-label="Site">
+  <div class="wrap">
+    <a class="name" href="#top">Louis Bensard</a>
+    <ul>
+      <li><a href="#now">Now</a></li>
+      <li><a href="#built">Work</a></li>
+      <li><a href="#thinking">Writing</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main id="top">
+
+<!-- ============ HERO ============ -->
+<section class="hero">
+  <div class="wrap">
+    <div>
+      <h1>I build AI systems that have to work in the real world.</h1>
+      <p class="lede"><b>Co-founder &amp; CTO at Sightline</b>, where I built the ML from scratch and now lead engineering. Before that, ten years of applied machine learning. I care about the distance between a model that looks good on paper and one that works in production — and about what comes next in AI.</p>
+
+      <!-- Hero diagram: time series → patches → tokens → attention → forecast -->
+<svg class="forecast" viewBox="0 0 640 190" role="img" aria-label="Diagram of a transformer time series forecaster: an observed series is cut into patches, embedded as tokens, passed through an attention layer, and produces a prediction, shown against the actual values with an uncertainty band.">
+        <!-- series → patches → tokens -->
+        <line x1="10" y1="34" x2="10" y2="118" class="tick"/><line x1="40" y1="34" x2="40" y2="118" class="tick"/><line x1="70" y1="34" x2="70" y2="118" class="tick"/><line x1="100" y1="34" x2="100" y2="118" class="tick"/><line x1="130" y1="34" x2="130" y2="118" class="tick"/><line x1="160" y1="34" x2="160" y2="118" class="tick"/><line x1="190" y1="34" x2="190" y2="118" class="tick"/><line x1="220" y1="34" x2="220" y2="118" class="tick"/><line x1="250" y1="34" x2="250" y2="118" class="tick"/>
+        <path class="hist" d="M10,70 L20,58 L30,82 L40,64 L50,50 L60,76 L70,60 L80,44 L90,68 L100,54 L110,80 L120,62 L130,48 L140,72 L150,58 L160,66 L170,46 L180,74 L190,60 L200,52 L210,70 L220,56 L230,78 L240,64 L250,50"/>
+        <line x1="25" y1="118" x2="25" y2="140" class="tick"/><line x1="55" y1="118" x2="55" y2="140" class="tick"/><line x1="85" y1="118" x2="85" y2="140" class="tick"/><line x1="115" y1="118" x2="115" y2="140" class="tick"/><line x1="145" y1="118" x2="145" y2="140" class="tick"/><line x1="175" y1="118" x2="175" y2="140" class="tick"/><line x1="205" y1="118" x2="205" y2="140" class="tick"/><line x1="235" y1="118" x2="235" y2="140" class="tick"/>
+        <rect x="13" y="140" width="24" height="12" rx="2" class="tok"/><rect x="43" y="140" width="24" height="12" rx="2" class="tok"/><rect x="73" y="140" width="24" height="12" rx="2" class="tok"/><rect x="103" y="140" width="24" height="12" rx="2" class="tok"/><rect x="133" y="140" width="24" height="12" rx="2" class="tok"/><rect x="163" y="140" width="24" height="12" rx="2" class="tok"/><rect x="193" y="140" width="24" height="12" rx="2" class="tok"/><rect x="223" y="140" width="24" height="12" rx="2" class="tok"/>
+        <!-- attention -->
+        <line x1="300" y1="34" x2="420" y2="34" stroke="currentColor" stroke-opacity="0.09" stroke-width="0.8"/><line x1="300" y1="34" x2="420" y2="51" stroke="currentColor" stroke-opacity="0.07" stroke-width="0.8"/><line x1="300" y1="34" x2="420" y2="68" stroke="currentColor" stroke-opacity="0.13" stroke-width="0.8"/><line x1="300" y1="34" x2="420" y2="85" stroke="currentColor" stroke-opacity="0.06" stroke-width="0.8"/><line x1="300" y1="34" x2="420" y2="102" stroke="currentColor" stroke-opacity="0.11" stroke-width="0.8"/><line x1="300" y1="34" x2="420" y2="119" stroke="currentColor" stroke-opacity="0.09" stroke-width="0.8"/><line x1="300" y1="34" x2="420" y2="136" stroke="currentColor" stroke-opacity="0.06" stroke-width="0.8"/><line x1="300" y1="34" x2="420" y2="153" stroke="currentColor" stroke-opacity="0.11" stroke-width="0.8"/><line x1="300" y1="51" x2="420" y2="34" stroke="currentColor" stroke-opacity="0.05" stroke-width="0.8"/><line x1="300" y1="51" x2="420" y2="51" stroke="currentColor" stroke-opacity="0.10" stroke-width="0.8"/><line x1="300" y1="51" x2="420" y2="68" stroke="currentColor" stroke-opacity="0.06" stroke-width="0.8"/><line x1="300" y1="51" x2="420" y2="85" stroke="currentColor" stroke-opacity="0.06" stroke-width="0.8"/><line x1="300" y1="51" x2="420" y2="102" stroke="currentColor" stroke-opacity="0.10" stroke-width="0.8"/><line x1="300" y1="51" x2="420" y2="119" stroke="var(--accent)" stroke-opacity="0.37" stroke-width="1.2"/><line x1="300" y1="51" x2="420" y2="136" stroke="currentColor" stroke-opacity="0.06" stroke-width="0.8"/><line x1="300" y1="51" x2="420" y2="153" stroke="currentColor" stroke-opacity="0.08" stroke-width="0.8"/><line x1="300" y1="68" x2="420" y2="34" stroke="currentColor" stroke-opacity="0.13" stroke-width="0.8"/><line x1="300" y1="68" x2="420" y2="51" stroke="var(--accent)" stroke-opacity="0.70" stroke-width="1.2"/><line x1="300" y1="68" x2="420" y2="68" stroke="currentColor" stroke-opacity="0.12" stroke-width="0.8"/><line x1="300" y1="68" x2="420" y2="85" stroke="currentColor" stroke-opacity="0.10" stroke-width="0.8"/><line x1="300" y1="68" x2="420" y2="102" stroke="var(--accent)" stroke-opacity="0.78" stroke-width="1.2"/><line x1="300" y1="68" x2="420" y2="119" stroke="currentColor" stroke-opacity="0.06" stroke-width="0.8"/><line x1="300" y1="68" x2="420" y2="136" stroke="var(--accent)" stroke-opacity="0.46" stroke-width="1.2"/><line x1="300" y1="68" x2="420" y2="153" stroke="currentColor" stroke-opacity="0.08" stroke-width="0.8"/><line x1="300" y1="85" x2="420" y2="34" stroke="currentColor" stroke-opacity="0.07" stroke-width="0.8"/><line x1="300" y1="85" x2="420" y2="51" stroke="currentColor" stroke-opacity="0.06" stroke-width="0.8"/><line x1="300" y1="85" x2="420" y2="68" stroke="currentColor" stroke-opacity="0.09" stroke-width="0.8"/><line x1="300" y1="85" x2="420" y2="85" stroke="currentColor" stroke-opacity="0.15" stroke-width="0.8"/><line x1="300" y1="85" x2="420" y2="102" stroke="currentColor" stroke-opacity="0.07" stroke-width="0.8"/><line x1="300" y1="85" x2="420" y2="119" stroke="currentColor" stroke-opacity="0.12" stroke-width="0.8"/><line x1="300" y1="85" x2="420" y2="136" stroke="currentColor" stroke-opacity="0.13" stroke-width="0.8"/><line x1="300" y1="85" x2="420" y2="153" stroke="currentColor" stroke-opacity="0.09" stroke-width="0.8"/><line x1="300" y1="102" x2="420" y2="34" stroke="currentColor" stroke-opacity="0.12" stroke-width="0.8"/><line x1="300" y1="102" x2="420" y2="51" stroke="currentColor" stroke-opacity="0.06" stroke-width="0.8"/><line x1="300" y1="102" x2="420" y2="68" stroke="currentColor" stroke-opacity="0.06" stroke-width="0.8"/><line x1="300" y1="102" x2="420" y2="85" stroke="currentColor" stroke-opacity="0.07" stroke-width="0.8"/><line x1="300" y1="102" x2="420" y2="102" stroke="currentColor" stroke-opacity="0.13" stroke-width="0.8"/><line x1="300" y1="102" x2="420" y2="119" stroke="currentColor" stroke-opacity="0.10" stroke-width="0.8"/><line x1="300" y1="102" x2="420" y2="136" stroke="currentColor" stroke-opacity="0.09" stroke-width="0.8"/><line x1="300" y1="102" x2="420" y2="153" stroke="currentColor" stroke-opacity="0.12" stroke-width="0.8"/><line x1="300" y1="119" x2="420" y2="34" stroke="currentColor" stroke-opacity="0.10" stroke-width="0.8"/><line x1="300" y1="119" x2="420" y2="51" stroke="currentColor" stroke-opacity="0.09" stroke-width="0.8"/><line x1="300" y1="119" x2="420" y2="68" stroke="currentColor" stroke-opacity="0.15" stroke-width="0.8"/><line x1="300" y1="119" x2="420" y2="85" stroke="currentColor" stroke-opacity="0.13" stroke-width="0.8"/><line x1="300" y1="119" x2="420" y2="102" stroke="currentColor" stroke-opacity="0.08" stroke-width="0.8"/><line x1="300" y1="119" x2="420" y2="119" stroke="currentColor" stroke-opacity="0.12" stroke-width="0.8"/><line x1="300" y1="119" x2="420" y2="136" stroke="currentColor" stroke-opacity="0.11" stroke-width="0.8"/><line x1="300" y1="119" x2="420" y2="153" stroke="var(--accent)" stroke-opacity="0.50" stroke-width="1.2"/><line x1="300" y1="136" x2="420" y2="34" stroke="currentColor" stroke-opacity="0.14" stroke-width="0.8"/><line x1="300" y1="136" x2="420" y2="51" stroke="currentColor" stroke-opacity="0.08" stroke-width="0.8"/><line x1="300" y1="136" x2="420" y2="68" stroke="var(--accent)" stroke-opacity="0.79" stroke-width="1.2"/><line x1="300" y1="136" x2="420" y2="85" stroke="currentColor" stroke-opacity="0.06" stroke-width="0.8"/><line x1="300" y1="136" x2="420" y2="102" stroke="currentColor" stroke-opacity="0.10" stroke-width="0.8"/><line x1="300" y1="136" x2="420" y2="119" stroke="currentColor" stroke-opacity="0.14" stroke-width="0.8"/><line x1="300" y1="136" x2="420" y2="136" stroke="currentColor" stroke-opacity="0.07" stroke-width="0.8"/><line x1="300" y1="136" x2="420" y2="153" stroke="currentColor" stroke-opacity="0.11" stroke-width="0.8"/><line x1="300" y1="153" x2="420" y2="34" stroke="currentColor" stroke-opacity="0.05" stroke-width="0.8"/><line x1="300" y1="153" x2="420" y2="51" stroke="currentColor" stroke-opacity="0.13" stroke-width="0.8"/><line x1="300" y1="153" x2="420" y2="68" stroke="currentColor" stroke-opacity="0.14" stroke-width="0.8"/><line x1="300" y1="153" x2="420" y2="85" stroke="currentColor" stroke-opacity="0.12" stroke-width="0.8"/><line x1="300" y1="153" x2="420" y2="102" stroke="var(--accent)" stroke-opacity="0.50" stroke-width="1.2"/><line x1="300" y1="153" x2="420" y2="119" stroke="currentColor" stroke-opacity="0.09" stroke-width="0.8"/><line x1="300" y1="153" x2="420" y2="136" stroke="currentColor" stroke-opacity="0.13" stroke-width="0.8"/><line x1="300" y1="153" x2="420" y2="153" stroke="currentColor" stroke-opacity="0.12" stroke-width="0.8"/>
+        <circle cx="300" cy="34" r="3.2" class="node"/><circle cx="420" cy="34" r="3.2" class="node"/><circle cx="300" cy="51" r="3.2" class="node"/><circle cx="420" cy="51" r="3.2" class="node"/><circle cx="300" cy="68" r="3.2" class="node"/><circle cx="420" cy="68" r="3.2" class="node"/><circle cx="300" cy="85" r="3.2" class="node"/><circle cx="420" cy="85" r="3.2" class="node"/><circle cx="300" cy="102" r="3.2" class="node"/><circle cx="420" cy="102" r="3.2" class="node"/><circle cx="300" cy="119" r="3.2" class="node"/><circle cx="420" cy="119" r="3.2" class="node"/><circle cx="300" cy="136" r="3.2" class="node"/><circle cx="420" cy="136" r="3.2" class="node"/><circle cx="300" cy="153" r="3.2" class="node"/><circle cx="420" cy="153" r="3.2" class="node"/>
+        <!-- forecast -->
+        <line class="now" x1="470" y1="34" x2="470" y2="118"/>
+        <path class="band" d="M470,77 L479,70 L488,57 L497,72 L506,45 L515,68 L524,69 L533,53 L542,73 L551,64 L560,42 L569,70 L578,72 L587,50 L596,71 L605,61 L614,47 L623,69 L632,65 632,79 L623,91 L614,73 L605,79 L596,97 L587,74 L578,88 L569,94 L560,70 L551,80 L542,99 L533,75 L524,83 L515,92 L506,71 L497,96 L488,79 L479,86 L470,91 Z"/>
+        <path class="hist" d="M455,88 L470,84"/>
+        <path class="actual" d="M470,84 L479,80 L488,62 L497,92 L506,48 L515,88 L524,76 L533,58 L542,96 L551,70 L560,44 L569,90 L578,82 L587,54 L596,94 L605,66 L614,50 L623,86 L632,72"/>
+        <path class="fc" d="M470,84 L479,78 L488,68 L497,84 L506,58 L515,80 L524,76 L533,64 L542,86 L551,72 L560,56 L569,82 L578,80 L587,62 L596,84 L605,70 L614,60 L623,80 L632,72"/>
+        <!-- arrows -->
+        <path class="arrow" d="M262,95 L286,95 M281,91 L286,95 L281,99"/>
+        <path class="arrow" d="M432,95 L456,95 M451,91 L456,95 L451,99"/>
+        <!-- labels -->
+        <text x="10" y="176">series, cut into patches</text>
+        <text x="360" y="176" text-anchor="middle">attention</text>
+        <text x="470" y="176">actual</text>
+        <line x1="503" y1="172" x2="519" y2="172" class="actual"/>
+        <text x="524" y="176">vs. predicted</text>
+        <line x1="591" y1="172" x2="607" y2="172" class="fc"/>
+      </svg>
+    </div>
+
+    <img class="portrait" src="headshot.jpg" alt="Louis Bensard" width="1200" height="1500">
+  </div>
+</section>
+
+<!-- ============ NOW ============ -->
+<section class="now" id="now">
+  <div class="wrap">
+    <div class="measure">
+      <h2>Now</h2>
+      <p>Sightline is a VC-backed, AI-native supply chain operating system for restaurant chains. As technical co-founder I built the AI/ML vertical from scratch: deep learning forecasting models, an AI recommendation layer that turns predictions into decisions operators actually act on, and the data platform and infrastructure that run all of it in production.</p>
+      <p>Day to day I'm still an ML/AI engineer: designing model architectures, running training and evaluation, and shipping what works to production. As CTO I also lead the engineering team and scale the product. Sightline is where I'm applying these ideas today; the ideas are bigger than one vertical.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ BUILT ============ -->
+<section class="built" id="built">
+  <div class="wrap">
+    <h2>Work</h2>
+    <ol>
+      <li>
+        <div class="meta">
+          <h3>Sightline</h3>
+          Co-founder &amp; CTO<br>2025 – present
+        </div>
+        <div class="body">
+          <p>The AI/ML vertical from zero: forecasting engine, recommendation layer, training and inference pipelines, data platform, cloud infrastructure. Then the engineering team to run it, and now the web app that restaurant chains use every day.</p>
+          <p class="result">In production for paying enterprise customers.</p>
+        </div>
+      </li>
+      <li>
+        <div class="meta">
+          <h3>Stratos</h3>
+          Founder<br>2023 – 2024
+        </div>
+        <div class="body">
+          <p>My first venture: a "Strava for pilots." ML on flight and geospatial time series for airport and route recommendations, a global airport explorer built on 10M+ points of interest, and a fine-tuned LLM pilot assistant. Designed, built and shipped solo, models on-device via Core ML.</p>
+          <p class="result">Live on the App Store.</p>
+        </div>
+      </li>
+    </ol>
+    <h3 class="prev">Earlier</h3>
+    <ol class="previously">
+      <li>
+        <div class="meta">
+          <h3>Ekimetrics &amp; Ipsos MMA</h3>
+          Tech lead, data science<br>2019 – 2025
+        </div>
+        <div class="body">
+          <p>Five years of predictive modeling at scale for Fortune 500 clients: Bayesian marketing-mix models with MCMC inference, time series forecasting, and hundreds of gradient-boosted and neural models on billions of features. Led teams of up to nine data scientists.</p>
+          <p class="result">Models behind $20M+ in client decisions.</p>
+        </div>
+      </li>
+      <li>
+        <div class="meta">
+          <h3>Panasonic Avionics</h3>
+          ML engineer<br>2019
+        </div>
+        <div class="body">
+          <p>Recommendation engine for in-flight entertainment, built from passenger viewing history to shape airline media portfolios.</p>
+        </div>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<!-- ============ THINKING ============ -->
+<section class="think" id="thinking">
+  <div class="wrap">
+    <div>
+      <h2>What I believe</h2>
+      <ul class="beliefs">
+        <li>AI is the most powerful technology we have ever built. The only way it ends up serving people rather than the other way around is if everyone is in the conversation — building it, using it, deciding what it is for, and setting its guardrails.</li>
+        <li>The tools change every year. Math doesn't. Every model I've shipped, from Bayesian regression to transformers, came down to the same few ideas: distributions, uncertainty, optimization. Learn the tools, but invest in the math — it's the only part that compounds.</li>
+      </ul>
+    </div>
+    <div>
+      <h2>Writing</h2>
+      <ul class="writing">
+        <!-- Each item: replace href with the post URL, the link text with the title, the <p> with a one-line summary. Delete unused items. -->
+        <li>
+          <a href="#">Placeholder — post title</a>
+          <p>Placeholder — one-line summary.</p>
+        </li>
+        <li>
+          <a href="#">Placeholder — post title</a>
+          <p>Placeholder — one-line summary.</p>
+        </li>
+        <li>
+          <a href="#">Placeholder — post title</a>
+          <p>Placeholder — one-line summary.</p>
+        </li>
+      </ul>
+      <p class="small" style="margin-top:1.2rem">Long-form, infrequent. Notes on building ML that works outside the lab.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ABOUT ============ -->
+<section class="about" id="about">
+  <div class="wrap">
+    <div>
+      <h2>About</h2>
+      <p class="route">Paris → California → New York</p>
+      <p>I grew up in a small town near Paris with one ambition: move to America and build a life from scratch. I earned two Bachelor's degrees at Sorbonne Université, one in Mathematics and one in Computer Science, then moved to California for a Master's in Statistics. I've been in New York since 2019.</p>
+      <p>Outside of work, I'm a licensed pilot, avid off-the-beaten-path traveler and (unlicensed) French cook at home.</p>
+      <p class="small">English, French, Spanish.</p>
+    </div>
+    <div class="photos">
+      <figure>
+        <img src="centralpark.jpg" alt="Central Park and the Manhattan skyline from the window of a Cessna" width="1200" height="1200">
+        <figcaption>Central Park from the left seat of a Cessna.</figcaption>
+      </figure>
+      <figure>
+        <img src="namibia.jpg" alt="Louis on a dune in Sossusvlei, Namibia" width="1200" height="1200">
+        <figcaption>Sossusvlei, Namibia.</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section class="contact" id="contact">
+  <div class="wrap">
+    <h2>Get in touch</h2>
+    <p class="measure">Open to conversations about applied ML, AI research, and what the next generation of AI systems should look like.</p>
+    <ul>
+      <li><a href="mailto:louis.bensard@gmail.com">louis.bensard@gmail.com</a></li>
+      <li><a href="https://www.linkedin.com/in/louis-bensard/">LinkedIn</a></li>
+      <li><a href="https://github.com/LouisBensard">GitHub</a></li>
+      <!-- REPLACE with the resume PDF URL uploaded to Squarespace -->
+      <li><a href="#">Resume (PDF)</a></li>
+    </ul>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap small">
+    <span>Louis Bensard · New York</span>
+    <span><a href="#top">Back to top</a></span>
+  </div>
+</footer>
+
+</body>
+</html>
