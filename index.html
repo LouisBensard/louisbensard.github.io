@@ -66,13 +66,15 @@
   h3 { font-size: 1.35rem; }
 
   .wrap { width: min(1080px, 100% - 3rem); margin-inline: auto; }
+  .wrap.narrow { max-width: 760px; }
   .measure { max-width: 640px; }
-  section { padding: clamp(3.5rem, 8vw, 6.5rem) 0; border-top: 1px solid var(--rule); }
+  section { padding: clamp(3.5rem, 8vw, 6.5rem) 0; border-top: 1px solid var(--rule); scroll-margin-top: 4rem; }
   section:first-of-type { border-top: 0; }
   .small { font-size: .92rem; color: var(--muted); }
 
   /* ---------- nav ---------- */
-  nav { padding: 1.4rem 0; }
+  nav { position: sticky; top: 0; z-index: 10; padding: 1.1rem 0; background: color-mix(in srgb, var(--paper) 88%, transparent); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); border-bottom: 1px solid var(--rule); }
+  @supports not (color-mix(in srgb, red 50%, transparent)) { nav { background: var(--paper); } }
   nav .wrap { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
   nav .name { font-family: var(--serif); font-size: 1.25rem; text-decoration: none; }
   nav ul { list-style: none; margin: 0; padding: 0; display: flex; gap: 1.4rem; font-size: .95rem; }
@@ -117,11 +119,11 @@
   .built .previously li:first-child { border-top: 1px solid var(--rule); padding-top: 1.8rem; }
   @media (max-width: 760px) { .built li { grid-template-columns: 1fr; gap: .6rem; } }
 
-  /* ---------- thinking ---------- */
-  .think .wrap { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(2rem, 6vw, 6rem); }
-  @media (max-width: 760px) { .think .wrap { grid-template-columns: 1fr; } }
-  .beliefs { list-style: none; margin: 0; padding: 0; font-family: var(--serif); font-size: 1.3rem; line-height: 1.35; }
-  .beliefs li { padding: 1rem 0; border-top: 1px solid var(--rule); }
+  /* ---------- beliefs & writing ---------- */
+  .beliefs { list-style: none; margin: 0; padding: 0; }
+  .beliefs q { quotes: none; display: block; font-family: var(--serif); font-size: clamp(1.35rem, 2.4vw, 1.7rem); line-height: 1.3; letter-spacing: -.01em; }
+  .beliefs p { margin: .6rem 0 0; color: var(--muted); font-size: 1rem; max-width: 40em; }
+  .beliefs li { padding: 1.4rem 0; border-top: 1px solid var(--rule); }
   .beliefs li:first-child { border-top: 0; padding-top: 0; }
   .writing { list-style: none; margin: 0; padding: 0; }
   .writing li { padding: 1rem 0; border-top: 1px solid var(--rule); }
@@ -132,10 +134,9 @@
   .writing .soon { color: var(--muted); font-size: .8rem; margin-left: .5em; font-family: var(--sans); }
 
   /* ---------- about ---------- */
-  .about .wrap { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(2rem, 5vw, 5rem); align-items: start; }
-  @media (max-width: 760px) { .about .wrap { grid-template-columns: 1fr; } }
   .about .route { font-family: var(--serif); font-style: italic; font-size: 1.2rem; color: var(--muted); margin-bottom: 1.2rem; }
-  .about .photos { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .about .photos { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 2rem; }
+  @media (max-width: 520px) { .about .photos { grid-template-columns: 1fr; } }
   .about .photos figcaption { font-size: .82rem; color: var(--muted); margin-top: .4rem; }
   .about figure { margin: 0; }
 
@@ -157,7 +158,7 @@
     <ul>
       <li><a href="#now">Now</a></li>
       <li><a href="#built">Work</a></li>
-      <li><a href="#thinking">Writing</a></li>
+      <li><a href="#writing">Writing</a></li>
       <li><a href="#about">About</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
@@ -170,8 +171,8 @@
 <section class="hero">
   <div class="wrap">
     <div>
-      <h1>I build AI systems that have to work in the real world.</h1>
-      <p class="lede"><b>Co-founder &amp; CTO at Sightline</b>, where I built the ML from scratch and now lead engineering. Before that, ten years of applied machine learning. I care about the distance between a model that looks good on paper and one that works in production — and about what comes next in AI.</p>
+      <h1>I build AI that works.</h1>
+      <p class="lede"><b>Co-founder &amp; CTO at Sightline.</b> Ten years of applied machine learning before that. I aim to make a positive impact on society by building AI systems that work in the real world — and I think a lot about where AI goes next.</p>
 
       <!-- Hero diagram: time series → patches → tokens → attention → forecast -->
 <svg class="forecast" viewBox="0 0 640 190" role="img" aria-label="Diagram of a transformer time series forecaster: an observed series is cut into patches, embedded as tokens, passed through an attention layer, and produces a prediction, shown against the actual values with an uncertainty band.">
@@ -208,8 +209,8 @@
 
 <!-- ============ NOW ============ -->
 <section class="now" id="now">
-  <div class="wrap">
-    <div class="measure">
+  <div class="wrap narrow">
+    <div>
       <h2>Now</h2>
       <p>Sightline is a VC-backed, AI-native supply chain operating system for restaurant chains. As technical co-founder I built the AI/ML vertical from scratch: deep learning forecasting models, an AI recommendation layer that turns predictions into decisions operators actually act on, and the data platform and infrastructure that run all of it in production.</p>
       <p>Day to day I'm still an ML/AI engineer: designing model architectures, running training and evaluation, and shipping what works to production. As CTO I also lead the engineering team and scale the product. Sightline is where I'm applying these ideas today; the ideas are bigger than one vertical.</p>
@@ -219,7 +220,7 @@
 
 <!-- ============ BUILT ============ -->
 <section class="built" id="built">
-  <div class="wrap">
+  <div class="wrap narrow">
     <h2>Work</h2>
     <ol>
       <li>
@@ -268,41 +269,43 @@
   </div>
 </section>
 
-<!-- ============ THINKING ============ -->
-<section class="think" id="thinking">
-  <div class="wrap">
-    <div>
-      <h2>What I believe</h2>
-      <ul class="beliefs">
-        <li>AI is the most powerful technology we have ever built. The only way it ends up serving people rather than the other way around is if everyone is in the conversation — building it, using it, deciding what it is for, and setting its guardrails.</li>
-        <li>The tools change every year. Math doesn't. Every model I've shipped, from Bayesian regression to transformers, came down to the same few ideas: distributions, uncertainty, optimization. Learn the tools, but invest in the math — it's the only part that compounds.</li>
-      </ul>
-    </div>
-    <div>
-      <h2>Writing</h2>
-      <ul class="writing">
-        <!-- Each item: replace href with the post URL, the link text with the title, the <p> with a one-line summary. Delete unused items. -->
-        <li>
-          <a href="#">Placeholder — post title</a>
-          <p>Placeholder — one-line summary.</p>
-        </li>
-        <li>
-          <a href="#">Placeholder — post title</a>
-          <p>Placeholder — one-line summary.</p>
-        </li>
-        <li>
-          <a href="#">Placeholder — post title</a>
-          <p>Placeholder — one-line summary.</p>
-        </li>
-      </ul>
-      <p class="small" style="margin-top:1.2rem">Long-form, infrequent. Notes on building ML that works outside the lab.</p>
-    </div>
+<!-- ============ BELIEFS ============ -->
+<section class="beliefs-sec" id="beliefs">
+  <div class="wrap narrow">
+    <h2>What I believe</h2>
+    <ul class="beliefs">
+      <li>
+        <q>AI is the most powerful technology we have ever built. It is too important to leave to a few.</q>
+        <p>This technology will touch every human alive today and every one born after us. Everyone must have a seat at the table — in the building, in the decisions, and in the rules — because a future built by a handful is not a future for all.</p>
+      </li>
+      <li>
+        <q>Tools expire. Math doesn't.</q>
+        <p>Every model I've shipped, from Bayesian regression to transformers, came down to the same ideas: distributions, uncertainty, optimization. Learn the tools; invest in the math.</p>
+      </li>
+      <li>
+        <q>Trust a model the way a pilot trusts an instrument: only after checking it against the horizon.</q>
+        <p>A forecast earns trust the way a gauge does — cross-checked against what actually happened, again and again.</p>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ WRITING ============ -->
+<section class="writing-sec" id="writing">
+  <div class="wrap narrow">
+    <h2>Writing</h2>
+    <p>Nothing here yet. This is where I'll put occasional writing, long and short, on building ML that works outside the lab and on where AI is heading.</p>
+    <!-- When posts exist, replace the paragraph above with:
+    <ul class="writing">
+      <li><a href="POST_URL">Post title</a><p>One-line summary.</p></li>
+    </ul>
+    -->
   </div>
 </section>
 
 <!-- ============ ABOUT ============ -->
 <section class="about" id="about">
-  <div class="wrap">
+  <div class="wrap narrow">
     <div>
       <h2>About</h2>
       <p class="route">Paris → California → New York</p>
@@ -325,15 +328,14 @@
 
 <!-- ============ CONTACT ============ -->
 <section class="contact" id="contact">
-  <div class="wrap">
+  <div class="wrap narrow">
     <h2>Get in touch</h2>
     <p class="measure">Open to conversations about applied ML, AI research, and what the next generation of AI systems should look like.</p>
     <ul>
       <li><a href="mailto:louis.bensard@gmail.com">louis.bensard@gmail.com</a></li>
       <li><a href="https://www.linkedin.com/in/louis-bensard/">LinkedIn</a></li>
       <li><a href="https://github.com/LouisBensard">GitHub</a></li>
-      <!-- REPLACE with the resume PDF URL uploaded to Squarespace -->
-      <li><a href="#">Resume (PDF)</a></li>
+      <li><a href="resume.pdf" target="_blank" rel="noopener">Resume (PDF)</a></li>
     </ul>
   </div>
 </section>
