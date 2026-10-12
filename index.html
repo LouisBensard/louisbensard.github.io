@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Louis Bensard — CTO, ML engineer</title>
-<meta name="description" content="Louis Bensard builds AI systems that have to work in the real world. Co-founder & CTO at Sightline. A decade of applied machine learning before that.">
+<meta name="description" content="Louis Bensard builds AI systems that have to work in the real world. Co-founder & CTO at Sightline, with 7+ years of machine learning in production.">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png">
 <link rel="icon" href="favicon-16.png" sizes="16x16" type="image/png">
@@ -159,7 +159,7 @@
       <li><a href="#now">Now</a></li>
       <li><a href="#built">Work</a></li>
       <li><a href="#about">About</a></li>
-      <li><a href="#writing">Writing</a></li>
+      <!-- Restore when the first post is live: <li><a href="#writing">Writing</a></li> -->
       <li><a href="#contact">Contact</a></li>
     </ul>
   </div>
@@ -172,7 +172,7 @@
   <div class="wrap">
     <div>
       <h1>I build AI that works.</h1>
-      <p class="lede"><b>Co-founder &amp; CTO at Sightline.</b> Ten years of applied machine learning before that. I aim to make a positive impact on society by building AI systems that work in the real world — and I think a lot about where AI goes next.</p>
+      <p class="lede"><b>Co-founder &amp; CTO at Sightline,</b> where I built the AI and the engineering team behind it. 7+ years building machine learning in production. I aim to make a positive impact on society by building AI systems that work in the real world — and I think a lot about where AI goes next.</p>
 
       <!-- Hero diagram: deep network · attention · gradient descent -->
 <svg class="forecast" viewBox="0 0 640 190" role="img" aria-label="Three machine learning motifs: a deep neural network, an attention layer, and gradient descent on a loss surface.">
@@ -199,8 +199,8 @@
   <div class="wrap narrow">
     <div>
       <h2>Now</h2>
-      <p>Sightline is a VC-backed, AI-native supply chain operating system for restaurant chains. As technical co-founder I built the AI/ML vertical from scratch: deep learning forecasting models, an AI recommendation layer that turns predictions into decisions operators actually act on, and the data platform and infrastructure that run all of it in production.</p>
-      <p>Day to day I'm still an ML/AI engineer: designing model architectures, running training and evaluation, and shipping what works to production. As CTO I also lead the engineering team and scale the product. Sightline is where I'm applying these ideas today; the ideas are bigger than one vertical.</p>
+      <p>Sightline is a VC-backed, AI-native supply chain operating system for restaurant chains. As technical co-founder I built the AI/ML vertical from scratch: transformer forecasting models (PatchTST) in PyTorch, an AI recommendation layer that turns predictions into decisions operators actually act on, and the data platform and infrastructure that run all of it in production.</p>
+      <p>Day to day I'm still an ML/AI engineer: designing model architectures, running training and evaluation, and shipping what works to production. As CTO I built the engineering team and department from scratch — hiring, engineering standards, testing, CI/CD — and own the technical architecture of the product. Sightline is where I'm applying these ideas today; the ideas are bigger than one vertical.</p>
     </div>
   </div>
 </section>
@@ -216,8 +216,8 @@
           Co-founder &amp; CTO<br>2025 – present
         </div>
         <div class="body">
-          <p>The AI/ML vertical from zero: forecasting engine, recommendation layer, training and inference pipelines, data platform, cloud infrastructure. Then the engineering team to run it, and now the web app that restaurant chains use every day.</p>
-          <p class="result">In production for paying enterprise customers.</p>
+          <p>The AI/ML vertical from zero: a forecasting engine of PatchTST transformers in PyTorch with hurdle modeling for intermittent demand, trained on GPUs on AWS Batch with hyperparameter optimization, multi-seed ensembling and Weights &amp; Biases tracking. A recommendation layer that turns forecasts into ranked, explainable actions. The data platform and AWS infrastructure underneath, and the engineering team to run it all.</p>
+          <p class="result">Under 5% wMAPE across thousands of item-level series, in production for paying enterprise customers.</p>
         </div>
       </li>
       <li>
@@ -226,7 +226,7 @@
           Founder<br>2023 – 2024
         </div>
         <div class="body">
-          <p>My first venture: a "Strava for pilots." ML on flight and geospatial time series for airport and route recommendations, a global airport explorer built on 10M+ points of interest, and a fine-tuned LLM pilot assistant. Designed, built and shipped solo, models on-device via Core ML.</p>
+          <p>My first venture: a "Strava for pilots." Personalized airport and route recommendations from nearest-neighbor retrieval over flight time-series and geospatial features, with on-device inference via Core ML; geospatial recommendations across 100K airports and 10M+ points of interest; and a fine-tuned LLM pilot assistant that gives flight performance recommendations. Designed, built and shipped solo, from models to app.</p>
           <p class="result">Live on the App Store.</p>
         </div>
       </li>
@@ -236,11 +236,11 @@
       <li>
         <div class="meta">
           <h3>Ekimetrics &amp; Ipsos MMA</h3>
-          Tech lead, data science<br>2019 – 2025
+          Manager &amp; tech lead, data science<br>2019 – 2025
         </div>
         <div class="body">
-          <p>Five years of predictive modeling at scale for Fortune 500 clients: Bayesian marketing-mix models with MCMC inference, time series forecasting, and hundreds of gradient-boosted and neural models on billions of features. Led teams of up to nine data scientists.</p>
-          <p class="result">Models behind $20M+ in client decisions.</p>
+          <p>Five years of predictive modeling at scale for Fortune 500 clients: Bayesian and hierarchical marketing-mix models in PyMC with MCMC inference, time-series forecasting, and hundreds of gradient-boosted and neural models on billions of data points, from scoping to deployment. Led teams of 9+ data scientists.</p>
+          <p class="result">Models behind $20M+ in measured client impact.</p>
         </div>
       </li>
       <li>
@@ -249,7 +249,8 @@
           ML engineer<br>2019
         </div>
         <div class="body">
-          <p>Recommendation engine for in-flight entertainment, built from passenger viewing history to shape airline media portfolios.</p>
+          <p>Recommendation engine for in-flight entertainment: models (scikit-learn, TensorFlow) that predict passenger viewing preferences from viewing history, used to shape airline media portfolios.</p>
+          <p class="result">85%+ accuracy on a 10M-row dataset.</p>
         </div>
       </li>
     </ol>
@@ -301,7 +302,8 @@
 </section>
 
 <!-- ============ WRITING ============ -->
-<section class="writing-sec" id="writing">
+<!-- Hidden until the first post is live: delete the "hidden" attribute below and restore the nav link. -->
+<section class="writing-sec" id="writing" hidden>
   <div class="wrap narrow">
     <h2>Writing</h2>
     <p>Nothing here yet. This is where I'll put occasional writing, long and short, on building ML that works outside the lab and on where AI is heading.</p>
